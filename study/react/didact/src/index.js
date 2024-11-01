@@ -235,6 +235,10 @@ function useMemo(calculateValue, dependencies) {
   return hook.value;
 }
 
+function useCallback(callback, dependencies) {
+  return useMemo(() => callback, dependencies);
+}
+
 function updateHostComponent(fiber) {
   if (!fiber.dom) {
     fiber.dom = createDom(fiber);
