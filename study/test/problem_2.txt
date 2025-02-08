@@ -1,0 +1,30 @@
+User
+- id
+- name
+- phone
+- email
+- birth
+- parent
+- parent_phone
+- school_id
+
+Teacher
+- id
+- name
+- subject
+
+User_Teacher
+- user_id
+- teacher_id
+
+School
+- id
+- name
+
+Hobby
+- id
+- name
+
+User_Hobby
+- user_id
+- hobby_id

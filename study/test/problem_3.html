@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <style>
+      .modal {
+        display: none;
+      }
+      .modal.open {
+        display: block;
+      }
+      .modal__dimmed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+      .modal__box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        max-height: 50vh;
+        overflow: hidden;
+        padding: 10px;
+        background: #eee;
+        border-radius: 5px;
+      }
+      .modal__box__header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+      .modal__box__detail {
+        flex: 1;
+        overflow-y: auto;
+      }
+      .modal__dimmed,
+      .modal__box__close_button {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button onclick="showModal()">Popup</button>
+    <div class="modal">
+      <div class="modal__dimmed" onclick="closeModal()"></div>
+      <div class="modal__box">
+        <div class="modal__box__header">
+          제목
+          <div class="modal__box__close_button" onclick="closeModal()">
+            닫기
+          </div>
+        </div>
+        <div class="modal__box__detail">내용</div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    const $modal = document.querySelector(".modal");
+    const showModal = () => {
+      $modal.classList.add("open");
+      window.addEventListener("keydown", handleKeyDown);
+    };
+    const closeModal = () => {
+      $modal.classList.remove("open");
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    };
+  </script>
+</html>

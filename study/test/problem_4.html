@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      .carousel {
+        overflow: hidden;
+      }
+      .carousel > div {
+        display: none;
+      }
+      .carousel > div.current {
+        display: block;
+        background: #eee;
+        height: 20vh;
+      }
+      .prev_button,
+      .next_button {
+        cursor: pointer;
+      }
+      .prev_button:disabled,
+      .next_button:disabled {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="prev_button" onclick="prev()">Previous</button>
+    <button class="next_button" onclick="next()">Next</button>
+    <div class="carousel">
+      <div class="current">One</div>
+      <div>Two</div>
+      <div>Three</div>
+      <div>Four</div>
+    </div>
+  </body>
+
+  <script>
+    let currentSlideIndex = 0;
+    const $carousel = document.querySelector(".carousel");
+    const slideItems = $carousel.children;
+    const totalSlides = slideItems.length;
+
+    const $prevButton = document.querySelector(".prev_button");
+    const $nextButton = document.querySelector(".next_button");
+
+    const prev = () => {
+      handleSlide(currentSlideIndex - 1);
+    };
+    const next = () => {
+      handleSlide(currentSlideIndex + 1);
+    };
+
+    const handleSlide = (index) => {
+      if (index < 0 || index > totalSlides) {
+        return;
+      }
+      slideItems[currentSlideIndex].classList.remove("current");
+      slideItems[index].classList.add("current");
+      currentSlideIndex = index;
+
+      updateButtons();
+    };
+
+    const updateButtons = () => {
+      $prevButton.disabled = currentSlideIndex === 0;
+      $nextButton.disabled = currentSlideIndex === totalSlides - 1;
+    };
+
+    updateButtons();
+  </script>
+</html>
